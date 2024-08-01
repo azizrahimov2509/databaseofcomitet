@@ -275,7 +275,7 @@ const AddMahalla = () => {
         </Modal>
 
         <div className="mt-8 overflow-x-auto">
-          <table className="table-auto w-full border-collapse border border-gray-200">
+          <table className="table-auto w-full border-collapse border border-gray-200 max-h-[750px] overflow-y-auto">
             <thead>
               <tr>
                 <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
@@ -322,19 +322,19 @@ const AddMahalla = () => {
                   <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
                     {item.news}
                   </td>
-                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                    <Button
-                      className="btn btn-outline btn-warning mr-2"
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base flex space-x-2">
+                    <button
                       onClick={() => handleEdit(item)}
+                      className="btn btn-sm btn-outline btn-warning"
                     >
                       <FaEdit />
-                    </Button>
-                    <Button
-                      className="btn btn-outline btn-error"
+                    </button>
+                    <button
                       onClick={() => handleDelete(item.id)}
+                      className="btn btn-sm btn-outline btn-error"
                     >
                       <FaTrash />
-                    </Button>
+                    </button>
                   </td>
                 </tr>
               ))}

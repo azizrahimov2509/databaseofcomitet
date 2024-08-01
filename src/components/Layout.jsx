@@ -8,7 +8,7 @@ export default function Layout() {
     <>
       <Header />
 
-      <main className="container   ">
+      <main className="container mt-2  ">
         <Outlet />
       </main>
 

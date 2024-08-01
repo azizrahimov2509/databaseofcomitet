@@ -7,9 +7,11 @@ export default function Layout() {
   return (
     <>
       <Header />
-      <main className="container bg-white mt-2">
+
+      <main className="container   ">
         <Outlet />
       </main>
+
       <Footer />
     </>
   );

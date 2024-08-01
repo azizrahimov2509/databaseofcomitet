@@ -24,7 +24,9 @@ const CommitteeDetails = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Committee Details</h1>
+      <h1 className="text-3xl font-bold mb-4">
+        Подробная информация о комитете
+      </h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-200">
           <thead>

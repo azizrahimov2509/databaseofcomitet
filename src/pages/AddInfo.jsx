@@ -127,213 +127,220 @@ const AddMahalla = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center">
-        <Button
-          className="btn btn-primary mb-4"
-          onClick={() => {
-            setEditMode(false);
-            setShowModal(true);
-          }}
-        >
-          Добавить махаллу
-        </Button>
-        <Button className="btn btn-secondary mb-4" onClick={handleLogout}>
-          Logout
-        </Button>
-      </div>
-
-      <Modal
-        open={showModal}
-        onClose={() => setShowModal(false)}
-        className="modal-center fixed inset-0 flex items-center justify-center z-50 p-4"
-      >
-        <div className="p-4 shadow-lg rounded-lg bg-base-200 w-full max-w-lg mx-auto">
-          <h2 className="text-2xl font-bold mb-4">
-            {editMode ? "Редактировать махаллу" : "Добавить махаллу"}
-          </h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">
-                Название махаллы
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="input input-bordered w-full"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">
-                Город (адрес)
-              </label>
-              <input
-                type="text"
-                value={formData.city}
-                onChange={(e) =>
-                  setFormData({ ...formData, city: e.target.value })
-                }
-                className="input input-bordered w-full"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">
-                Количество населения
-              </label>
-              <input
-                type="number"
-                placeholder="Молодых"
-                value={formData.population.young}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    population: {
-                      ...formData.population,
-                      young: e.target.value,
-                    },
-                  })
-                }
-                className="input input-bordered w-full mb-2"
-                required
-              />
-              <input
-                type="number"
-                placeholder="Старых"
-                value={formData.population.old}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    population: { ...formData.population, old: e.target.value },
-                  })
-                }
-                className="input input-bordered w-full mb-2"
-                required
-              />
-              <input
-                type="number"
-                placeholder="Бедных семей"
-                value={formData.population.poor}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    population: {
-                      ...formData.population,
-                      poor: e.target.value,
-                    },
-                  })
-                }
-                className="input input-bordered w-full"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Новости</label>
-              <textarea
-                value={formData.news}
-                onChange={(e) =>
-                  setFormData({ ...formData, news: e.target.value })
-                }
-                className="textarea textarea-bordered w-full"
-                rows={4}
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <Button
-                type="submit"
-                className="btn btn-primary"
-                disabled={loading}
-              >
-                {loading ? (
-                  <ClipLoader size={24} color={"#3498db"} />
-                ) : editMode ? (
-                  "Обновить"
-                ) : (
-                  "Сохранить"
-                )}
-              </Button>
-              <Button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => setShowModal(false)}
-              >
-                Отмена
-              </Button>
-            </div>
-          </form>
+    <div className="bg-white">
+      <div className="container mx-auto p-4">
+        <div className="flex justify-between items-center">
+          <Button
+            className="btn btn-primary mb-4"
+            onClick={() => {
+              setEditMode(false);
+              setShowModal(true);
+            }}
+          >
+            Добавить махаллу
+          </Button>
+          <Button className="btn btn-secondary mb-4" onClick={handleLogout}>
+            Logout
+          </Button>
         </div>
-      </Modal>
 
-      <div className="mt-8 overflow-x-auto">
-        <table className="table-auto w-full border-collapse border border-gray-200">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
-                Название
-              </th>
-              <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
-                Город
-              </th>
-              <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
-                Молодых
-              </th>
-              <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
-                Старых
-              </th>
-              <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
-                Бедных
-              </th>
-              <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
-                Новости
-              </th>
-              <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
-                Действия
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item.id}>
-                <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                  {item.name}
-                </td>
-                <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                  {item.city}
-                </td>
-                <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                  {item.population.young}
-                </td>
-                <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                  {item.population.old}
-                </td>
-                <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                  {item.population.poor}
-                </td>
-                <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                  {item.news}
-                </td>
-                <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
-                  <Button
-                    className="btn btn-outline btn-warning mr-2"
-                    onClick={() => handleEdit(item)}
-                  >
-                    <FaEdit />
-                  </Button>
-                  <Button
-                    className="btn btn-outline btn-error"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    <FaTrash />
-                  </Button>
-                </td>
+        <Modal
+          open={showModal}
+          onClose={() => setShowModal(false)}
+          className="modal-center fixed inset-0 flex items-center justify-center z-50 p-4"
+        >
+          <div className="p-4 shadow-lg rounded-lg bg-base-200 w-full max-w-lg mx-auto">
+            <h2 className="text-2xl font-bold mb-4">
+              {editMode ? "Редактировать махаллу" : "Добавить махаллу"}
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">
+                  Название махаллы
+                </label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">
+                  Город (адрес)
+                </label>
+                <input
+                  type="text"
+                  value={formData.city}
+                  onChange={(e) =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">
+                  Количество населения
+                </label>
+                <input
+                  type="number"
+                  placeholder="Молодых"
+                  value={formData.population.young}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      population: {
+                        ...formData.population,
+                        young: e.target.value,
+                      },
+                    })
+                  }
+                  className="input input-bordered w-full mb-2"
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="Старых"
+                  value={formData.population.old}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      population: {
+                        ...formData.population,
+                        old: e.target.value,
+                      },
+                    })
+                  }
+                  className="input input-bordered w-full mb-2"
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="Бедных семей"
+                  value={formData.population.poor}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      population: {
+                        ...formData.population,
+                        poor: e.target.value,
+                      },
+                    })
+                  }
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">
+                  Новости
+                </label>
+                <textarea
+                  value={formData.news}
+                  onChange={(e) =>
+                    setFormData({ ...formData, news: e.target.value })
+                  }
+                  className="textarea textarea-bordered w-full"
+                  rows={4}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <Button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <ClipLoader size={24} color={"#3498db"} />
+                  ) : editMode ? (
+                    "Обновить"
+                  ) : (
+                    "Сохранить"
+                  )}
+                </Button>
+                <Button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowModal(false)}
+                >
+                  Отмена
+                </Button>
+              </div>
+            </form>
+          </div>
+        </Modal>
+
+        <div className="mt-8 overflow-x-auto">
+          <table className="table-auto w-full border-collapse border border-gray-200">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
+                  Название
+                </th>
+                <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
+                  Город
+                </th>
+                <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
+                  Молодых
+                </th>
+                <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
+                  Старых
+                </th>
+                <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
+                  Бедных
+                </th>
+                <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
+                  Новости
+                </th>
+                <th className="border border-gray-300 p-2 text-left text-xs md:text-sm lg:text-base">
+                  Действия
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item.id}>
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
+                    {item.name}
+                  </td>
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
+                    {item.city}
+                  </td>
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
+                    {item.population.young}
+                  </td>
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
+                    {item.population.old}
+                  </td>
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
+                    {item.population.poor}
+                  </td>
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
+                    {item.news}
+                  </td>
+                  <td className="border border-gray-300 p-2 text-xs md:text-sm lg:text-base">
+                    <Button
+                      className="btn btn-outline btn-warning mr-2"
+                      onClick={() => handleEdit(item)}
+                    >
+                      <FaEdit />
+                    </Button>
+                    <Button
+                      className="btn btn-outline btn-error"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      <FaTrash />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ const AddMahalla = () => {
   });
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const navigate = useNavigate(); // Add useNavigate hook
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();

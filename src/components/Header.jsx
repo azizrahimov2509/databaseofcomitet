@@ -39,11 +39,8 @@ const Header = () => {
         {/* Menu items */}
         <ul
           className={`lg:flex lg:space-x-4 flex-col lg:flex-row absolute lg:static top-16 lg:top-0 left-0 w-full lg:w-auto bg-base-200 lg:bg-base-200 transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } lg:translate-x-0 lg:relative lg:flex lg:items-center lg:space-x-4 ${
             isMenuOpen ? "block" : "hidden"
-          } md:block`}
-          style={{ maxWidth: "100%" }} // Ensure the menu does not overflow
+          } lg:flex`}
         >
           <li>
             <Link
